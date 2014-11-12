@@ -75,6 +75,13 @@ When finished with the configuration above, you can switch between
 `zsh` and `ranger` by pressing `alt+z`. The working directories should
 automagically synchronize when doing so.
 
+DEPENDENCIES
+------------
+
+* ranger
+* zsh
+* tmux
+
 FAQ
 ---
 
