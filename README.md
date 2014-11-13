@@ -24,20 +24,19 @@ INSTALLATION
 
 **zsh**
 
-Copy the `zranger` file to your `$fpath` and add the following snippet
-to your `zshrc`:
+Copy the `zranger` file to a directory present in your `$FPATH` (see
+below) and add the following snippet to your `zshrc`:
 
 ```zsh
 autoload -U zranger
 bindkey -s '\ez' "\eq zranger\n"
 ```
 
-The second line binds `alt+z` to the key combination `\eq zranger\n`.
-"\eq" saves the current commandline contents, the space prevents this
-line from being saved (`HIST_IGNORE_SPACE` option needs to be enabled)
-and "zranger\n" is just a regular function call. It needs to be called
-this way (i.e. by emulating the keys) because `ranger` has issues when
-running inside `zle`.
+`$FPATH` is a variable with list of directories searched when
+autoloading a function. You can just create a new directory (for
+example `~/.fpath`) and add it to that variable in `zshrc`:
+
+    FPATH=$HOME/.fpath:$FPATH
 
 **ranger**
 
@@ -99,6 +98,16 @@ terminals. When doing this, it tries to be consistent when it comes to
 the working directories. If they happen to behave in a weird way, try
 increasing the sleep time in the main script a bit (there is a small
 race condition).
+
+**What does the second line added to the zsh config mean?**
+
+It binds `alt+z` ("\ez") to the key combination `\eq zranger\n`. "\eq"
+saves the current commandline contents (as does pressing `alt+q`), the
+space prevents this line from being saved in the history
+(`HIST_IGNORE_SPACE` option needs to be enabled) and "zranger\n" is
+just a regular function call. It needs to be called this way (i.e. by
+emulating the keys) because `ranger` has issues when running inside a
+zle widget which would be the only alternative.
 
 COPYRIGHT
 ---------
