@@ -1,7 +1,7 @@
 zranger
 =======
 
-[zsh](http://www.zsh.org/) and [ranger](http://ranger.nongnu.org/) integration.
+[zsh](http://www.zsh.org/) and [ranger](http://ranger.nongnu.org/) integration
 
 DESCRIPTION
 -----------
@@ -12,6 +12,10 @@ preserving the commandline contents. The `ranger` process is kept in
 background (using `tmux`) so the switch is almost instantaneous. The
 new process is created only on the first run or when the old one is
 explicitly closed (instead of detaching).
+
+It's an alternative approach to the problem I've been trying to solve
+with [deer](https://github.com/vifon/deer): a fast access to a
+ranger-like environment used as an extension of shell.
 
 INSTALLATION
 ------------
@@ -86,7 +90,7 @@ FAQ
 ---
 
 **When I call zranger with another zranger called from another shell,
-  the other one quits**
+  the other one quits.**
 
 It is by design. Keeping multiple `ranger` instances would be both
 inefficient and difficult. For the sake of simplicity `zranger` uses
