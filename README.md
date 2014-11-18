@@ -9,13 +9,35 @@ DESCRIPTION
 `zranger` allows easy and quick switching back and forth between `zsh`
 and `ranger` while synchronizing their working directories and
 preserving the commandline contents. The `ranger` process is kept in
-background (using `tmux`) so the switch is almost instantaneous. The
-new process is created only on the first run or when the old one is
-explicitly closed (instead of detaching).
+background (using `tmux`) after the first launch so the switching is
+almost instantaneous. The new process is created only on the first run
+or when the old one is explicitly closed (instead of detaching).
 
 It's an alternative approach to the problem I've been trying to solve
 with [deer](https://github.com/vifon/deer): a fast access to a
 ranger-like environment used as an extension of shell.
+
+FEATURES
+--------
+
+**Laziness**
+
+The `ranger` process is started on the first call to `zranger`. No
+need to launch a new `ranger` process for each and every shell means
+almost no shell startup time penalty.
+
+**Just works!**
+
+`zranger` mostly reuses the pre-existing mechanisms. Thanks to that
+most of the things just work. Want to close the terminal window with
+that button in the corner? Sure, why not! `tmux` has you covered. Or
+maybe you'd rather open some `ranger`'s tabs and keep them between
+`zranger` invocations? Not a problem. `ranger`'s directory history
+works as expected too.
+
+Due to its simplicity I don't expect to update this project very
+often. It does **not** mean that it's abandoned. Feel free to report
+bugs and feature request or send pull requests.
 
 INSTALLATION
 ------------
@@ -89,7 +111,7 @@ FAQ
 ---
 
 **When I call zranger with another zranger called from another shell,
-  the other one quits.**
+  the other one quits. Why?**
 
 It is by design. Keeping multiple `ranger` instances would be both
 inefficient and difficult. For the sake of simplicity `zranger` uses
@@ -98,6 +120,9 @@ terminals. When doing this, it tries to be consistent when it comes to
 the working directories. If they happen to behave in a weird way, try
 increasing the sleep time in the main script a bit (there is a small
 race condition).
+
+I'm very aware of this `zranger`'s shortcoming but I have no good
+ideas how to handle it. Please feel free to suggest something.
 
 **What does the second line added to the zsh config mean?**
 
