@@ -134,6 +134,12 @@ just a regular function call. It needs to be called this way (i.e. by
 emulating the keys) because `ranger` has issues when running inside a
 zle widget which would be the only alternative.
 
+**Can I use zranger with Bash?**
+
+Currently it's not supported but I've successfully run it by creating
+a function `zranger` with contents of the main file as its body and
+binding it with `bind '"\ez":" zranger\n"'`. YMMV.
+
 COPYRIGHT
 ---------
 
