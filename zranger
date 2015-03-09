@@ -12,9 +12,9 @@ if RANGER_PID=$(tmux list-panes -s -F '#{pane_pid}' -t ranger 2> /dev/null); the
     # Tell ranger to read zsh's cwd from /tmp and cd to it.
     kill -SIGUSR1 $RANGER_PID
     # Attach to it.
-    tmux attach -t ranger
+    TMUX='' tmux attach -t ranger
 else
-    tmux new-session -s ranger 'exec ranger --cmd="set preview_images=false"'
+    TMUX='' tmux new-session -s ranger 'exec ranger --cmd="set preview_images=false"'
 fi
 
 # A second check needed because the process could have been
