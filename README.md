@@ -65,11 +65,13 @@ example `~/.fpath`) and add it to that variable in `zshrc`:
 Add the following snippet to `ranger`'s `commands.py` file:
 
 ```python
+import os
 import signal
 def zranger_chdir_handler(signal, frame):
-    with open("/tmp/zranger-cwd", "r") as f:
+    tmpfile = "/tmp/zranger-cwd-{}".format(os.getuid())
+    with open(tmpfile, "r") as f:
         Command.fm.cd(f.readline().strip())
-        os.unlink("/tmp/zranger-cwd")
+        os.unlink(tmpfile)
 signal.signal(signal.SIGUSR1, zranger_chdir_handler)
 ```
 

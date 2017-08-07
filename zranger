@@ -4,7 +4,7 @@ local RANGER_PID
 
 if RANGER_PID=$(tmux list-panes -s -F '#{pane_pid}' -t ranger 2> /dev/null); then
     # Leave the current cwd for ranger to read and cleanup.
-    pwd > /tmp/zranger-cwd
+    pwd > /tmp/zranger-cwd-$UID
     # Detach the other zranger instance...
     tmux detach-client -s ranger
     # ...and give it some time to read ranger's cwd before it changes.
